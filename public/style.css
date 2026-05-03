@@ -1,0 +1,232 @@
+:root {
+    --uel-blue: #002347;
+    --gold: #d4af37;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--uel-blue);
+    background-image: radial-gradient(circle at center, #003366 0%, #001a33 100%);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Các biểu tượng chìm dưới nền */
+.background-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.background-decorations .icon {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.15;
+    filter: grayscale(1);
+}
+
+.i1 { top: 10%; left: 10%; animation: drift 15s infinite linear; }
+.i2 { top: 40%; left: 5%; animation: drift 20s infinite linear reverse; }
+.i3 { top: 80%; left: 15%; animation: drift 12s infinite linear; }
+.i4 { top: 15%; right: 10%; animation: drift 18s infinite linear; }
+.i5 { top: 50%; right: 5%; animation: drift 22s infinite linear reverse; }
+.i6 { top: 85%; right: 15%; animation: drift 14s infinite linear; }
+
+@keyframes drift {
+    from { transform: rotate(0deg) translate(0, 0); }
+    to { transform: rotate(360deg) translate(20px, 20px); }
+}
+
+/* Base Layout (Desktop) */
+.main-wrapper {
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 2vh 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.school-name {
+    font-family: 'Montserrat', serif;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-top: 5px;
+}
+
+.school-logo {
+    height: 8vh; /* Có thể tăng nhẹ chiều cao vì đã có thêm padding */
+    background: rgba(255, 255, 255, 0.9); /* Nền trắng gần như đặc */
+    padding: 8px 20px; /* Khoảng cách từ logo đến viền bệ đỡ */
+    border-radius: 15px; /* Bo góc mềm mại */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Đổ bóng cho bệ đỡ nổi lên */
+}
+
+.vnu-name { font-size: 0.8rem; opacity: 0.8; letter-spacing: 1px; }
+
+/* Photo Stage */
+.photo-stage {
+    position: relative;
+    height: 38vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-frame {
+    height: 100%;
+    aspect-ratio: 1/1;
+    border: 4px solid var(--gold);
+    border-radius: 50%;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.portrait {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.f-photo {
+    position: absolute;
+    width: 14vh;
+    height: 14vh;
+    border: 2.5px solid var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.f-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Thuộc tính thần thánh giúp ảnh vừa khít khung mà không bị méo tỉ lệ */
+    display: block; /* Xóa khoảng trống thừa (nếu có) dưới đáy ảnh */
+}
+.p1 { top: -5%; left: 15%; animation: float 6s infinite ease-in-out; }
+.p2 { top: 5%; right: 15%; animation: float 5s infinite ease-in-out 1s; }
+.p3 { bottom: -5%; left: 18%; animation: float 7s infinite ease-in-out 0.5s; }
+.p4 { bottom: 0%; right: 18%; animation: float 8s infinite ease-in-out 1.5s; }
+
+/* Text Content */
+.intro-text h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    color: var(--white);
+}
+
+.personal-name {
+    font-family: 'Montserrat', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-top: 5px;
+    padding: 10px;
+    letter-spacing: 4px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.05);
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding: 2.5vh 0;
+    width: 70%;
+    padding-top: 30px;
+    margin: 50px auto 0 auto;
+}
+
+.info-row { margin: 8px 0; }
+.label { color: var(--gold); font-weight: 700; margin-right: 12px; font-size: 0.9rem; }
+.value { font-size: 1.3rem; font-weight: 500; }
+
+.final-msg { font-style: italic; opacity: 0.8; font-size: 1.1rem; }
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* =========================================================
+   MOBILE RESPONSIVE - Fix giãn cách nội dung hoàn hảo
+   ========================================================= */
+@media (max-width: 768px) {
+    .main-wrapper {
+        gap: 0; /* Tắt gap cứng của desktop */
+        padding: 3vh 10px 5vh 10px; /* Thêm không gian ở trên và dưới cùng */
+    }
+
+    /* Biến khu vực chứa nội dung thành Flexbox để trải đều không gian */
+    .invitation-content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Yêu cầu nó chiếm toàn bộ chiều cao còn trống */
+        justify-content: space-evenly; /* Lệnh quan trọng: Chia đều khoảng trống cho các cụm nội dung */
+        align-items: center;
+        width: 100%;
+    }
+
+    .school-logo { height: 7vh; }
+    .school-name { font-size: 1.1rem; letter-spacing: 1px; }
+    
+    .intro-text { margin-bottom: 0; }
+    .intro-text h1 { font-size: 2.2rem; }
+    .personal-name { font-size: 1.6rem; letter-spacing: 2px; margin-top: 0; }
+
+    .photo-stage { 
+        height: 32vh; 
+        width: 100%;
+    }
+    
+    .f-photo { 
+        width: 11vh; 
+        height: 11vh; 
+        border-width: 1.5px;
+    }
+
+    .p1 { top: -5%; left: 3%; }
+    .p2 { top: 5%; right: 3%; }
+    .p3 { bottom: -5%; left: 6%; }
+    .p4 { bottom: -2%; right: 6%; }
+
+    .info-card { 
+        width: 95%; 
+        margin: 0 auto; /* Xóa margin cứng 50px để justify-content tự tính khoảng cách */
+        padding: 2vh 0; 
+    }
+    
+    .label { font-size: 0.8rem; }
+    .value { font-size: 1rem; }
+    
+    .final-msg { 
+        font-size: 0.95rem; 
+        padding: 0 10px;
+        margin: 0;
+    }
+
+    .background-decorations .icon {
+        font-size: 2rem;
+    }
+}
